@@ -6,6 +6,7 @@ export async function valueToTreeObject(
   owner: string,
   repo: string,
   path: string,
+  fork: string,
   value: string | File
 ) {
   let mode = "100644";
@@ -27,7 +28,7 @@ export async function valueToTreeObject(
   const { data } = await octokit.request(
     "POST /repos/{owner}/{repo}/git/blobs",
     {
-      owner,
+      owner: fork,
       repo,
       ...value,
     }
